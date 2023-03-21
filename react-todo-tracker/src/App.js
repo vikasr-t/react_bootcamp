@@ -1,22 +1,34 @@
-import Header from "./components/Header";
-import NewHeader from "./components/NewHeader";
+import { useState } from "react";
+import AddTask from "./components/add-task";
+import FilterTasks from "./components/filter-tasks";
+import TasksList from "./components/tasks-list";
 
 function App() {
-  let header;
+    const [tasksList, setTasksList] = useState([]);
 
-  if (1 < 2) {
-    header = <Header title="Hello" />;
-  } else {
-    header = <NewHeader />
-  }
+    const addItemsToTaskList = item => {
+        const tasksCopy = [...tasksList];
+        tasksCopy.push(item);
+        setTasksList(tasksCopy);
+    };
 
+    const markItemAsDone = index => {
+        const tasksCopy = [...tasksList];
+        tasksCopy[index].status = "done";
+        setTasksList(tasksCopy);
+    };
 
+    return (
+        <div className='App'>
+            <h1>TO DO APP</h1>
 
-  return (
-    <div className="App">
-      {1 < 10 ? <Header title="Hello" /> : null}
-    </div>
-  );
+            <AddTask addItemsToTaskList={addItemsToTaskList} />
+
+            <FilterTasks />
+
+            <TasksList tasksList={tasksList} markItemAsDone={markItemAsDone} />
+        </div>
+    );
 }
 
 export default App;

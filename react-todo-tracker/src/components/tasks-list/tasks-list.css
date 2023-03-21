@@ -1,0 +1,12 @@
+.list-table {
+    width: 100%;
+    padding: 0 20%;
+}
+
+tr, td, th {
+    border: 1px solid;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
